@@ -1,0 +1,395 @@
+/* ===== BASE RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* ===== COLOR SYSTEM ===== */
+:root {
+    /* LIGHT MODE COLORS */
+    --light-primary-bg: #e1e297;
+    --light-work-bg: #ffffff;
+    --light-break-bg: #333333;
+    --light-work-text: #000000;
+    --light-break-text: #ffffff;
+    --light-work-progress: #000000;
+    --light-break-progress: #ffffff;
+    --light-panel-bg: rgba(255, 255, 255, 0.9);
+    --light-progress-bg: rgba(0, 0, 0, 0.1);
+    
+    /* DARK MODE COLORS */
+    --dark-primary-bg: #1a1a2e;
+    --dark-work-bg: #000000;
+    --dark-break-bg: #5d9cec;
+    --dark-work-text: #ffffff;
+    --dark-break-text: #000000;
+    --dark-work-progress: #ffffff;
+    --dark-break-progress: #000000;
+    --dark-panel-bg: rgba(0, 0, 0, 0.7);
+    --dark-progress-bg: rgba(255, 255, 255, 0.1);
+    
+    /* COMMON COLORS */
+    --btn-primary: #3498db;
+    --btn-secondary: #7f8c8d;
+    --btn-stop: #e74c3c;
+}
+
+/* ===== BASE STYLES ===== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--light-primary-bg);
+    color: var(--light-work-text);
+}
+
+body.dark-mode {
+    background-color: var(--dark-primary-bg);
+    color: var(--dark-work-text);
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ===== TITLE ===== */
+#title {
+    font-size: 3rem;
+    margin: 1rem 0 2rem;
+    text-align: center;
+}
+
+/* ===== MODE TOGGLE ===== */
+.mode-toggle-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.mode-toggle {
+    display: flex;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+    padding: 0.3rem;
+}
+
+body.dark-mode .mode-toggle {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.mode-btn {
+    padding: 0.5rem 1.2rem;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    color: inherit;
+    font-weight: 500;
+}
+
+.mode-btn.active {
+    background: var(--btn-primary);
+    color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== TIMER DISPLAY ===== */
+#timer-display {
+    width: 100%;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+#timer {
+    font-size: 10rem;
+    font-weight: bold;
+    margin: 2rem 0;
+    text-align: center;
+    width: 100%;
+}
+
+/* ===== WORK/BREAK MODES ===== */
+body.work-mode {
+    background-color: var(--light-work-bg);
+    color: var(--light-work-text);
+}
+
+body.break-mode {
+    background-color: var(--light-break-bg);
+    color: var(--light-break-text);
+}
+
+body.dark-mode.work-mode {
+    background-color: var(--dark-work-bg);
+    color: var(--dark-work-text);
+}
+
+body.dark-mode.break-mode {
+    background-color: var(--dark-break-bg);
+    color: var(--dark-break-text);
+}
+
+/* ===== PROGRESS BAR ===== */
+.full-progress-container {
+    width: 100%;
+    max-width: 500px;
+    height: 8px;
+    background: var(--light-progress-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+body.dark-mode .full-progress-container {
+    background: var(--dark-progress-bg);
+}
+
+.full-progress-bar {
+    height: 100%;
+    width: 0%;
+    transition: width 0.5s ease;
+}
+
+body.work-mode .full-progress-bar {
+    background-color: var(--light-work-progress);
+}
+
+body.break-mode .full-progress-bar {
+    background-color: var(--light-break-progress);
+}
+
+body.dark-mode.work-mode .full-progress-bar {
+    background-color: var(--dark-work-progress);
+}
+
+body.dark-mode.break-mode .full-progress-bar {
+    background-color: var(--dark-break-progress);
+}
+
+/* ===== SETTINGS PANEL ===== */
+.settings-panel {
+    background-color: var(--light-panel-bg);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+body.dark-mode .settings-panel {
+    background-color: var(--dark-panel-bg);
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: inherit;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+body.dark-mode .input-group input {
+    background: rgba(0, 0, 0, 0.5);
+    border-color: #444;
+    color: white;
+}
+
+/* ===== SOUND OPTIONS ===== */
+.sound-selection {
+    margin: 1.5rem 0;
+}
+
+.sound-selection label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: inherit;
+}
+
+.sound-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+}
+
+.sound-option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+}
+
+body.dark-mode .sound-option {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.sound-option:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .sound-option:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* ===== BUTTONS ===== */
+.button-group-center {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.button-group-bottom {
+    position: fixed;
+    bottom: 2rem;
+    left: 0;
+    right: 0;
+    padding: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary {
+    background-color: var(--btn-primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-secondary {
+    background-color: var(--btn-secondary);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #6c7a89;
+    transform: translateY(-3px);
+}
+
+.btn-stop {
+    background-color: var(--btn-stop);
+    color: white;
+    width: 200px;
+    padding: 1rem;
+}
+
+.btn-stop:hover {
+    background-color: #c0392b;
+}
+
+/* ===== ROUND INFO ===== */
+#round-info {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    color: inherit;
+    font-size: 1.1rem;
+    text-align: left;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 0.8rem 1.2rem;
+    border-radius: 30px;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+
+body.dark-mode #round-info {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* ===== AUTO START ===== */
+.auto-start {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.auto-start label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+/* ===== UTILITY CLASSES ===== */
+.hidden {
+    display: none !important;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 600px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    #timer {
+        font-size: 4rem;
+    }
+    
+    .button-group-center {
+        flex-direction: column;
+    }
+    
+    .settings-panel {
+        padding: 1.5rem;
+    }
+    
+    .sound-options {
+        grid-template-columns: 1fr;
+    }
+}

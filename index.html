@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POMODORA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    </style>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Mode Toggle -->
+        <div class="mode-toggle-container">
+            <div class="mode-toggle">
+                <button id="light-mode-btn" class="mode-btn active">
+                    <i class="fas fa-sun"></i> Açık Mod
+                </button>
+                <button id="dark-mode-btn" class="mode-btn">
+                    <i class="fas fa-moon"></i> Koyu Mod
+                </button>
+            </div>
+        </div>
+
+        <h1 id="title">Pomodora</h1>
+        
+        <!-- Round Info -->
+        <div id="round-info" class="hidden">
+            <div class="round-display">
+                <span id="current-round">1</span>/<span id="total-rounds">3</span> Tur
+            </div>
+            <div id="duration-info" class="duration-display">
+                <i class="fas fa-clock"></i> <span id="time-left">25:00</span>
+            </div>
+        </div>
+        
+        <!-- Settings Panel -->
+        <div class="settings-panel" id="settings-panel">
+            <div class="input-group">
+                <label for="work-time"><i class="fas fa-laptop-code"></i> Çalışma (dk):</label>
+                <input type="number" id="work-time" min="1" value="25">
+            </div>
+            <div class="input-group">
+                <label for="break-time"><i class="fas fa-coffee"></i> Mola (dk):</label>
+                <input type="number" id="break-time" min="1" value="5">
+            </div>
+            <div class="input-group">
+                <label for="rounds"><i class="fas fa-redo"></i> Tur Sayısı:</label>
+                <input type="number" id="rounds" min="1" value="3">
+            </div>
+            
+            <div class="sound-selection">
+                <label><i class="fas fa-music"></i> Arkaplan Sesi:</label>
+                <div class="sound-options">
+                    <label class="sound-option">
+                        <input type="radio" name="sound" value="none" checked> 
+                        <i class="fas fa-volume-mute"></i> Sessiz
+                    </label>
+                    <label class="sound-option">
+                        <input type="radio" name="sound" value="rain"> 
+                        <i class="fas fa-cloud-rain"></i> Yağmur
+                    </label>
+                    <label class="sound-option">
+                        <input type="radio" name="sound" value="night"> 
+                        <i class="fas fa-moon"></i> Gece
+                    </label>
+                    <label class="sound-option">
+                        <input type="radio" name="sound" value="cafe"> 
+                        <i class="fas fa-coffee"></i> Kafe
+                    </label>
+                    <label class="sound-option">
+                        <input type="radio" name="sound" value="beach"> 
+                        <i class="fas fa-umbrella-beach"></i> Sahil
+                    </label>
+                    <label class="sound-option">
+                        <input type="radio" name="sound" value="forest"> 
+                        <i class="fas fa-tree"></i> Orman
+                    </label>
+                </div>
+            </div>
+            
+            <div class="button-group-center">
+                <button id="start-btn" class="btn-primary">
+                    <i class="fas fa-play"></i> Başla
+                </button>
+                <button id="infinite-start-btn" class="btn-secondary">
+                    <i class="fas fa-infinity"></i> Sınırsız
+                </button>
+            </div>
+            
+            <div class="auto-start">
+                <label>
+                    <input type="checkbox" id="auto-start"> 
+                    <i class="fas fa-power-off"></i> Otomatik başlat
+                </label>
+            </div>
+        </div>
+        
+        <!-- Timer Display -->
+        <div id="timer-display" class="hidden">
+            <div id="timer">25:00</div>
+            
+            <div class="button-group-bottom">
+                <div class="full-progress-container">
+                    <div id="full-progress-bar" class="full-progress-bar"></div>
+                </div>
+                <button id="stop-btn" class="btn-stop">
+                    <i class="fas fa-stop"></i> Çalışmayı Bitir
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio Elements -->
+    <audio id="sound-start" src=""></audio>
+    <audio id="sound-work-end" src="assets/work-end.wav"></audio>
+    <audio id="sound-break-end" src="assets/break-end.wav"></audio>
+    <audio id="sound-rain" loop src="assets/rain.wav"></audio>
+    <audio id="sound-night" loop src="assets/night.wav"></audio>
+    <audio id="sound-cafe" loop src="assets/cafe.wav"></audio>
+    <audio id="sound-beach" loop src="assets/beach-ocean.wav"></audio>
+    <audio id="sound-forest" loop src="assets/forest.wav"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
